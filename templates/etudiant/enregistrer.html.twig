@@ -1,0 +1,22 @@
+{% extends '/etudiant/layout.html.twig' %}
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+
+{% block res_body %}
+
+<h2>Enregistrer un etudiant  </h2>
+
+        {{ form_start(form) }}
+        {{ form_row(form.matricule, {'attr': {'placeholder': 'Matricule'}}) }}
+        {{ form_row(form.nom, {'attr': {'placeholder': 'Nom'}}) }}
+        {{ form_row(form.prenom, {'attr':{'placeholder': 'Prenom'}}) }}
+        {{ form_row(form.email, {'attr': {'placeholder': 'Email'}}) }}
+        {{ form_row(form.telephone, {'attr': {'placeholder': 'Telephone'}}) }}
+        {{ form_row(form.DateDeNaissance, {'attr': {'placeholder': 'Date De Naissance'}}) }}
+        {{ form_row(form.chambre, {'attr': {'placeholder': 'Chambre'}}) }}
+        {{ form_row(form.bourse, {'attr': {'placeholder': 'Bourse'}}) }}
+            <button type="submit" class="btn btn-success">
+                Enregistrer
+            </button>
+            {{ form_end(form) }}
+{% endblock %}
+

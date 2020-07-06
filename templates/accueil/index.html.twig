@@ -1,0 +1,153 @@
+{% extends 'base.html.twig' %}
+{% block title %} Gestion reservation etudiant {% endblock %}
+{% block stylesheets %} {{parent()}}
+
+    <style type="text/css">
+    </style>
+{% endblock %}
+
+
+{% block body %}
+    <body class="nav-md">
+    <div class="container body">
+        <div class="main_container">
+
+            <div class="col-md-3 left_col">
+                <div class="left_col scroll-view">
+                    <div class="navbar nav_title" style="border: 0;">
+                        <a href="#" class="site_title"><i class="fa fa-paw"></i> <span>Greservation</span></a>
+                    </div>
+
+                    <div class="clearfix"></div>
+
+                    <!-- menu profile quick info -->
+
+                    <div class="profile clearfix">
+
+                    </div>
+
+                    <!-- /menu profile quick info -->
+
+                    <br>
+
+                    <!-- sidebar menu -->
+                    <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                        <div class="menu_section">
+
+                            <ul class="nav side-menu" style="">
+                                {% block menu_section %}
+
+                                {% endblock %}
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- /sidebar menu -->
+                </div>
+            </div>
+
+
+
+            <!-- top navigation c est dans cette partie que je vais mettre le header -->
+            {% block navbar %}
+                <div class="nav_menu">
+                    <nav>
+                        <div class="nav toggle">
+                            <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+
+                        </div>
+                        <h1 style="margin-left: 20%;">Connecter vous et Gerer les reservations des etudiants</h1>
+
+                    </nav>
+                </div>
+            {% endblock %}
+            <!-- /top navigation -->
+
+
+            <!-- page content -->
+            <div class="right_col" role="main" style="min-height: 2095px;">
+                {% block res_body %}
+                    <div class="clearfix">
+
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="x_panel">
+                                <div class="x_title">
+                                    <h2><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Se connecter </font></font><small><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Entrer votre login et votre mot de pass </font></font></small></h2>
+
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="x_content">
+                                    <br>
+                                    <form id="demo-form2" data-parsley-validate="" class="form-horizontal form-label-left" novalidate="">
+
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Login </font></font><span class="required"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">*</font></font></span>
+                                            </label>
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                <input type="text" id="first-name" required="required" class="form-control col-md-7 col-xs-12">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Mot de pass </font></font><span class="required"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">*</font></font></span>
+                                            </label>
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                <input type="password" id="last-name" name="last-name" required="required" class="form-control col-md-7 col-xs-12">
+                                            </div>
+                                        </div>
+
+
+
+                                        <div class="ln_solid"></div>
+                                        <div class="form-group">
+                                            <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                                               <button type="submit" class="btn btn-success"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Se Connecter</font></font></button>
+                                            </div>
+                                        </div>
+
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endblock %}
+
+
+                <!-- top tiles -->
+                <div class="row tile_count">
+                    <!-- je vais mettre ici mon  header -->
+                    <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+
+                    </div>
+                    {% block footer %}
+                        <!-- footer content -->
+                        <footer class="container-fluid">
+                            <h2>Contactez l'ODC</h2>
+                            <span class="glyphicon glyphicon-earphone"></span>  +221 33 839 21 00
+                            <br>
+
+                            <span class="glyphicon glyphicon-globe"></span>        https://www.academysonatel.com//
+                            <br>
+                            <span class="glyphicon glyphicon-map-marker"></span> Orange Digital center
+                            <br>
+                            <span class="glyphicon glyphicon-time"></span>  08h-12h et 15h-18h
+                            <br>
+                            <br>
+                            <div class="text-center" style="background-color:black;">
+                                Copyright © 2020 ODC <br>
+                                Site conçu et réalisé par Samba Drame et Ahmadou Sakhir Fall
+                            </div>
+
+
+                        </footer>
+                        <!-- /footer content -->
+                    {% endblock %}
+                </div>
+            </div>
+            <!-- /page content -->
+        </div>
+    </div>
+    </body>
+
+{% endblock %}
+
