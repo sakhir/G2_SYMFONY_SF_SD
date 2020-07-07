@@ -46,7 +46,6 @@ class Etudiant
 
     /**g
      * @ORM\Column(type="integer")
-     * @Assert\Regex(pattern="/(7|8|9)\d{9}/", message="numero incorrect") 
      */
     private $telephone;
 

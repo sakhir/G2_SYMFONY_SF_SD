@@ -12,11 +12,37 @@
         {{ form_row(form.email, {'attr': {'placeholder': 'Email'}}) }}
         {{ form_row(form.telephone, {'attr': {'placeholder': 'Telephone'}}) }}
         {{ form_row(form.DateDeNaissance, {'attr': {'placeholder': 'Date De Naissance'}}) }}
-        {{ form_row(form.chambre, {'attr': {'placeholder': 'Chambre'}}) }}
-        {{ form_row(form.bourse, {'attr': {'placeholder': 'Bourse'}}) }}
+        {{ form_row(form.bourse, {'attr': {'placeholder': 'Bourse'}}) }} {# <select id="etudiant_bourse" ... #}
+        {{ form_row(form.chambre, {'attr': {'placeholder': 'Chambre'}}) }} {# <select id="etudiant_chambre" ... #}
             <button type="submit" class="btn btn-success">
                 Enregistrer
             </button>
             {{ form_end(form) }}
-{% endblock %}
 
+            <script>
+                var $bourse = $('#etudiant_bourse');
+                // When bourse gets selected ...
+                $bourse.change(function() {
+                // ... retrieve the corresponding form.
+                var $form = $(this).closest('form');
+                // Simulate form data, but only include the selected bourse value.
+                var data = {};
+                data[$bourse.attr('name')] = $bourse.val();
+                // Submit data via AJAX to the form's action path.
+                $.ajax({
+                    url : $form.attr('action'),
+                    type: $form.attr('method'),
+                    data : data,
+                    success: function(html) {
+                    // Replace current chambre field ...
+                    $('#etudiant_chambre').replaceWith(
+                        // ... with the returned one from the AJAX response.
+                        $(html).find('#etudiant_chambre')
+                    );
+                    // chambre field now displays the appropriate chambres.
+                    }
+                });
+                });
+            </script>
+
+{% endblock %}
