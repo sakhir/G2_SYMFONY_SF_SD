@@ -6,14 +6,13 @@
 <h2>Enregistrer un etudiant  </h2>
 
         {{ form_start(form) }}
-        {{ form_row(form.matricule, {'attr': {'placeholder': 'Matricule'}}) }}
         {{ form_row(form.nom, {'attr': {'placeholder': 'Nom'}}) }}
         {{ form_row(form.prenom, {'attr':{'placeholder': 'Prenom'}}) }}
         {{ form_row(form.email, {'attr': {'placeholder': 'Email'}}) }}
-        {{ form_row(form.telephone, {'attr': {'placeholder': 'Telephone'}}) }}
+        {{ form_row(form.tel, {'attr': {'placeholder': 'Telephone'}}) }}
         {{ form_row(form.DateDeNaissance, {'attr': {'placeholder': 'Date De Naissance'}}) }}
-        {{ form_row(form.chambre, {'attr': {'placeholder': 'Chambre'}}) }}
         {{ form_row(form.bourse, {'attr': {'placeholder': 'Bourse'}}) }}
+        {{ form_row(form.chambre, {'attr': {'placeholder': 'Chambre'}}) }}
             <button type="submit" class="btn btn-success">
                 Enregistrer
             </button>

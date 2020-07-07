@@ -15,23 +15,23 @@ class EtudiantType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('matricule')
             ->add('nom')
             ->add('prenom')
             ->add('email')
-            ->add('telephone')
+            ->add('tel')
             ->add('DateDeNaissance')
-            ->add('chambre',EntityType::class, [
-                'class' => Chambre::class,
-                'choice_label' => function($chambre){
-                    return $chambre->getNumero();
-                },
-            ])
+
             ->add('bourse', ChoiceType::class, [
                 'choices'  => [
                     'Oui' => 'oui',
                     'Non' => 'non',
                 ],
+            ])
+            ->add('chambre',EntityType::class, [
+                'class' => Chambre::class,
+                'choice_label' => function($chambre){
+                    return $chambre->getNumero();
+                },
             ])
         ;
     }
