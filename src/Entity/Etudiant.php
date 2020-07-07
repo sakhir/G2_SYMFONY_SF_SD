@@ -44,10 +44,14 @@ class Etudiant
      */
     private $email;
 
-    /**g
+    /**
      * @ORM\Column(type="integer")
+<<<<<<< HEAD
+=======
+     * @Assert\Regex(pattern="/^7[05678]{1}[0-9]{7}+$/", message="numero incorrect")
+>>>>>>> 92a49d6438dfd68375d9a9b1cf53e1f332ede4ba
      */
-    private $telephone;
+    private $tel;
 
     /**
      * @ORM\Column(type="date")
@@ -55,12 +59,22 @@ class Etudiant
     private $DateDeNaissance;
 
     /**
+     * @ORM\Column(type="date")
+     */
+    private $Dateinscription;
+
+    /**
+     * @ORM\Column(type="string", length=100,nullable=true)
+     */
+     private $addresse;
+
+    /**
      * @ORM\ManyToOne(targetEntity=Chambre::class, inversedBy="etudiants")
      */
     private $chambre;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="string", length=50)
      */
     private $bourse;
 
@@ -72,6 +86,11 @@ class Etudiant
     public function getMatricule(): ?string
     {
         return $this->matricule;
+    }
+
+    public function getAddresse(): ?string
+    {
+        return $this->addresse;
     }
 
     public function setMatricule(string $matricule): self
@@ -92,6 +111,13 @@ class Etudiant
 
         return $this;
     }
+    public function setAddresse(string $addresse): self
+    {
+        $this->addresse = $addresse;
+
+        return $this;
+    }
+
 
     public function getPrenom(): ?string
     {
@@ -117,14 +143,14 @@ class Etudiant
         return $this;
     }
 
-    public function getTelephone(): ?int
+    public function getTel(): ?int
     {
-        return $this->telephone;
+        return $this->tel;
     }
 
-    public function setTelephone(int $telephone): self
+    public function setTel(int $tel): self
     {
-        $this->telephone = $telephone;
+        $this->tel = $tel;
 
         return $this;
     }
@@ -141,6 +167,19 @@ class Etudiant
         return $this;
     }
 
+    public function getDateinscription(): ?\DateTimeInterface
+    {
+        return $this->Dateinscription;
+    }
+
+    public function setDateinscription(\DateTimeInterface $Dateinscription): self
+    {
+        $this->Dateinscription = $Dateinscription;
+
+        return $this;
+    }
+
+
     public function getChambre(): ?Chambre
     {
         return $this->chambre;
@@ -153,12 +192,12 @@ class Etudiant
         return $this;
     }
 
-    public function getBourse(): ?bool
+    public function getBourse(): ?String
     {
         return $this->bourse;
     }
 
-    public function setBourse(bool $bourse): self
+    public function setBourse(String $bourse): self
     {
         $this->bourse = $bourse;
 

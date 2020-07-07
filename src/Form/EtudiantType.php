@@ -18,17 +18,21 @@ class EtudiantType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('matricule')
             ->add('nom')
             ->add('prenom')
             ->add('email')
-            ->add('telephone')
+            ->add('tel')
             ->add('DateDeNaissance')
+<<<<<<< HEAD
+=======
+
+>>>>>>> 92a49d6438dfd68375d9a9b1cf53e1f332ede4ba
             ->add('bourse', ChoiceType::class, [
                 'choices'  => [
                     'Oui' => 'oui',
                     'Non' => 'non',
                 ],
+<<<<<<< HEAD
             ]);
 
             $formModifier = function (FormInterface $form= null, Etudiant $bourse = null) {
@@ -63,6 +67,16 @@ class EtudiantType extends AbstractType
                     $formModifier($event->getForm()->getParent(), $bourse);
                 }
             );
+=======
+            ])
+            ->add('chambre',EntityType::class, [
+                'class' => Chambre::class,
+                'choice_label' => function($chambre){
+                    return $chambre->getNumero();
+                },
+            ])
+        ;
+>>>>>>> 92a49d6438dfd68375d9a9b1cf53e1f332ede4ba
     }
 
     public function configureOptions(OptionsResolver $resolver)

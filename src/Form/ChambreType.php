@@ -16,7 +16,8 @@ class ChambreType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('numero')
+            ->add('numero',null,[
+              'disabled'   => true])
             ->add('type', ChoiceType::class, [
                 'choices'  => [
                     'Double' => 'double',

@@ -22,17 +22,39 @@ class ChambreController extends AbstractController
         return $this->render('chambre/liste.html.twig', compact(('chambres')));
     }
 
+
+    // je dois creer une fonction  qui prend le numero du batiment et
+    // genere le numero de  la chambre en fonction du numbat
+
+    public function GenNumChambre($numbat) {
+        $alea=rand();
+        $alea=substr($alea,0,4);
+        $numba=strval($numbat) ;
+        $zer="00".$numba;
+        $numcham=$zer."_".$alea;
+
+        return $numcham;
+
+
+    }
+
+
     /**
      * @Route("/chambre/enregistrer", name="chambre_register", methods={"POST","GET"})
      */
     public function enregistrer(Request $request, EntityManagerInterface $em):Response
     {
         $chambre = new Chambre();
+       // $numc=$chambre->getNumeroBatiment();
         $form = $this->createForm(ChambreType::class,$chambre);
+
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
-            //dd($chambre);
-            $em = $this->getDoctrine()->getManager();
+              $numc=$chambre->getNumeroBatiment()->getNumero();
+              $numcham=$this->GenNumChambre($numc);
+              $chambre->setNumero($numcham);
+            //dd($chambre->getNumeroBatiment()->getNumero());
+             $em = $this->getDoctrine()->getManager();
             $em->persist($chambre);
             $em->flush();
         }

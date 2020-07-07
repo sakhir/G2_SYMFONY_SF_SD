@@ -22,17 +22,35 @@ class EtudiantController extends AbstractController
         return $this->render('etudiant/liste.html.twig', compact(('etudiants')));
     }
 
+    // je dois creer une fonction  qui prend le prenom de l etudiant , son nom et
+    // genere son matricule
+
+    public function GenMatricule($pren,$nom)
+    {
+        $annee=date('Y');
+        $alea=rand();
+        $alea=substr($alea,0,4);
+        // deux premiers lettre du nom
+        $nn= strtoupper(substr($nom,0,2));
+        $pp= strtoupper(substr($pren,0,-2));
+        $matricule=$annee.$nn.$pp.$alea;
+        return $matricule;
+
+
+    }
+
     /**
      * @Route("/etudiant/enregistrer", name="etudiant_register", methods={"POST","GET"})
      */
     public function enregistrer(Request $request, EntityManagerInterface $em):Response
     {
         $etudiant = new Etudiant();
+        $etudiant->setDateinscription(new \DateTime("now"));
         $form = $this->createForm(EtudiantType::class,$etudiant);
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
-           // dump($etudiant);
-           
+
+           $etudiant->setMatricule($this->GenMatricule($etudiant->getNom(),$etudiant->getPrenom()));
             $em = $this->getDoctrine()->getManager();
             $em->persist($etudiant);
             $em->flush();

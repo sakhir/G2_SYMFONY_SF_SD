@@ -6,6 +6,7 @@ use App\Repository\ChambreRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use PhpParser\Node\Scalar\String_;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -21,7 +22,7 @@ class Chambre
     private $id;
 
     /**
-     * @ORM\Column(type="integer", unique=true)
+     * @ORM\Column(type="string", unique=true)
      */
     private $numero;
 
@@ -50,12 +51,12 @@ class Chambre
         return $this->id;
     }
 
-    public function getNumero(): ?int
+    public function getNumero(): ?String
     {
         return $this->numero;
     }
 
-    public function setNumero(int $numero): self
+    public function setNumero(String $numero): self
     {
         $this->numero = $numero;
 
