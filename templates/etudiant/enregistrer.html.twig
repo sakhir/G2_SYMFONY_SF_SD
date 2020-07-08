@@ -3,50 +3,47 @@
 
 {% block res_body %}
 
-<h2>Enregistrer un etudiant  </h2>
+	<h2>Enregistrer un etudiant
+	</h2>
 
-        {{ form_start(form) }}
-        {{ form_row(form.nom, {'attr': {'placeholder': 'Nom'}}) }}
-        {{ form_row(form.prenom, {'attr':{'placeholder': 'Prenom'}}) }}
-        {{ form_row(form.email, {'attr': {'placeholder': 'Email'}}) }}
-        {{ form_row(form.tel, {'attr': {'placeholder': 'Telephone'}}) }}
-        {{ form_row(form.DateDeNaissance, {'attr': {'placeholder': 'Date De Naissance'}}) }}
-<<<<<<< HEAD
-        {{ form_row(form.bourse, {'attr': {'placeholder': 'Bourse'}}) }} {# <select id="etudiant_bourse" ... #}
-        {{ form_row(form.chambre, {'attr': {'placeholder': 'Chambre'}}) }} {# <select id="etudiant_chambre" ... #}
-=======
-        {{ form_row(form.bourse, {'attr': {'placeholder': 'Bourse'}}) }}
-        {{ form_row(form.chambre, {'attr': {'placeholder': 'Chambre'}}) }}
->>>>>>> 92a49d6438dfd68375d9a9b1cf53e1f332ede4ba
-            <button type="submit" class="btn btn-success">
-                Enregistrer
-            </button>
-            {{ form_end(form) }}
+	{{ form_start(form) }}
+	{{ form_row(form.nom, {'attr': {'placeholder': 'Nom'}}) }}
+	{{ form_row(form.prenom, {'attr':{'placeholder': 'Prenom'}}) }}
+	{{ form_row(form.email, {'attr': {'placeholder': 'Email'}}) }}
+	{{ form_row(form.tel, {'attr': {'placeholder': 'Telephone'}}) }}
+	{{ form_row(form.DateDeNaissance, {'attr': {'placeholder': 'Date De Naissance'}}) }}
+	{{ form_row(form.bourse, {'attr': {'placeholder': 'Bourse'}}) }}
+	<div id="etudiant_chambre"></div> <br> 
+	<button type="submit" class="btn btn-success" id="envoi">
+		Enregistrer
+	</button>
+	{{ form_end(form) }}
+{% endblock %}
+{% block javascripts %}
+	<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+	<script>
+		$(document).ready(function () {
 
-            <script>
-                var $bourse = $('#etudiant_bourse');
-                // When bourse gets selected ...
-                $bourse.change(function() {
-                // ... retrieve the corresponding form.
-                var $form = $(this).closest('form');
-                // Simulate form data, but only include the selected bourse value.
-                var data = {};
-                data[$bourse.attr('name')] = $bourse.val();
-                // Submit data via AJAX to the form's action path.
-                $.ajax({
-                    url : $form.attr('action'),
-                    type: $form.attr('method'),
-                    data : data,
-                    success: function(html) {
-                    // Replace current chambre field ...
-                    $('#etudiant_chambre').replaceWith(
-                        // ... with the returned one from the AJAX response.
-                        $(html).find('#etudiant_chambre')
-                    );
-                    // chambre field now displays the appropriate chambres.
-                    }
-                });
-                });
-            </script>
+		$('#etudiant_bourse').focusout(function () {
+		generate();
+		});
+		function generate() {
+		var bourse = $("#etudiant_bourse").val();
+		if (bourse == 'oui') {
+		generateChambre();
+		} else if (bourse == 'non') {
+		generateAdresse();
+		}
+		}
+		function generateChambre() {
+			$('#etudiant_chambre').html('<input type="text" placeholder="Chambre" required>');
+			$('#etudiant_chambre').show();
+		}
 
+		function generateAdresse() {
+			$('#etudiant_chambre').html('<input type="text" placeholder="Adresse" required>');
+			$('#etudiant_chambre').show();
+		}
+})
+	</script>
 {% endblock %}

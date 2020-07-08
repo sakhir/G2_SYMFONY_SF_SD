@@ -46,10 +46,6 @@ class Etudiant
 
     /**
      * @ORM\Column(type="integer")
-<<<<<<< HEAD
-=======
-     * @Assert\Regex(pattern="/^7[05678]{1}[0-9]{7}+$/", message="numero incorrect")
->>>>>>> 92a49d6438dfd68375d9a9b1cf53e1f332ede4ba
      */
     private $tel;
 

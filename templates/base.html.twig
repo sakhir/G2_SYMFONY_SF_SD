@@ -27,8 +27,9 @@
     <body>
         {% block body %}{% endblock %}
         {% block javascripts %}
-            <script src="{{asset('build/js/generate.js')}}"></script>
+            
             <script src="{{asset('vendors/jquery/dist/jquery.min.js')}}"></script>
+            
             <!-- Bootstrap -->
             <script src="{{asset('vendors/bootstrap/dist/js/bootstrap.min.js')}}"></script>
             <!-- FastClick -->
@@ -94,6 +95,7 @@
             <script src="{{asset('vendors/pnotify/dist/pnotify.js')}}"></script>
             <script src="{{asset('vendors/pnotify/dist/pnotify.buttons.js')}}"></script>
             <script src="{{asset('vendors/pnotify/dist/pnotify.nonblock.js')}}"></script>
+           
 
         {% endblock %}
     </body>
