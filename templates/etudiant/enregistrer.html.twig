@@ -12,10 +12,11 @@
         {{ form_row(form.tel, {'attr': {'placeholder': 'Telephone'}}) }}
         {{ form_row(form.DateDeNaissance, {'attr': {'placeholder': 'Date De Naissance'}}) }}
         {{ form_row(form.bourse, {'attr': {'placeholder': 'Bourse'}}) }}
-        {{ form_row(form.chambre, {'attr': {'placeholder': 'Chambre'}}) }}
+      <div id="cha">
+        {{ form_row(form.chambre) }}
+      </div>
             <button type="submit" class="btn btn-success">
                 Enregistrer
             </button>
             {{ form_end(form) }}
 {% endblock %}
-

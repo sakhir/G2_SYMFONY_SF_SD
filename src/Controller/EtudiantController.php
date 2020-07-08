@@ -45,11 +45,49 @@ class EtudiantController extends AbstractController
     public function enregistrer(Request $request, EntityManagerInterface $em):Response
     {
         $etudiant = new Etudiant();
+
         $etudiant->setDateinscription(new \DateTime("now"));
+
         $form = $this->createForm(EtudiantType::class,$etudiant);
+
         $form->handleRequest($request);
+
         if($form->isSubmitted() && $form->isValid()){
 
+            // verifier dabord si la bourse est non
+            if ($_POST['etudiant']['bourse']=="non") {
+
+                $etudiant->setAddresse($_POST["addresse"]);
+                $etudiant->setLoge("Neant");
+                $etudiant->setChambre(null);
+                $etudiant->setNomchambre("Neant");
+
+
+            }
+            if ($_POST['etudiant']['bourse']=="oui") {
+                // verifions si l etudiant est loge ou non
+
+                  if ($_POST['loge']=="non") {
+
+                      $etudiant->setAddresse($_POST["addresse"]);
+                      $etudiant->setLoge("Neant");
+                      $etudiant->setChambre(null);
+                      $etudiant->setNomchambre("Neant");
+
+
+                  }
+                  // la l etudiant a une bourse et a un logement
+                  else {
+                      $etudiant->setNomchambre($etudiant->getChambre()->getNumero());
+                      $etudiant->setLoge("Oui");
+                      $etudiant->setChambre($etudiant->getChambre());
+                  }
+                //dd($_POST);
+
+
+                }
+
+       // dd($_POST);
            $etudiant->setMatricule($this->GenMatricule($etudiant->getNom(),$etudiant->getPrenom()));
             $em = $this->getDoctrine()->getManager();
             $em->persist($etudiant);

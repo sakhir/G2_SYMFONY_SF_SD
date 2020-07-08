@@ -23,6 +23,7 @@ class EtudiantType extends AbstractType
 
             ->add('bourse', ChoiceType::class, [
                 'choices'  => [
+                    'Boursier ou non ?' => 'ch',
                     'Oui' => 'oui',
                     'Non' => 'non',
                 ],
@@ -33,6 +34,7 @@ class EtudiantType extends AbstractType
                     return $chambre->getNumero();
                 },
             ])
+
         ;
     }
 
