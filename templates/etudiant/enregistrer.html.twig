@@ -13,37 +13,11 @@
 	{{ form_row(form.tel, {'attr': {'placeholder': 'Telephone'}}) }}
 	{{ form_row(form.DateDeNaissance, {'attr': {'placeholder': 'Date De Naissance'}}) }}
 	{{ form_row(form.bourse, {'attr': {'placeholder': 'Bourse'}}) }}
-	<div id="etudiant_chambre"></div> <br> 
-	<button type="submit" class="btn btn-success" id="envoi">
+	<div id="cha">
+		{{ form_row(form.chambre) }}
+	</div>
+	<button type="submit" class="btn btn-success">
 		Enregistrer
 	</button>
 	{{ form_end(form) }}
-{% endblock %}
-{% block javascripts %}
-	<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-	<script>
-		$(document).ready(function () {
-
-		$('#etudiant_bourse').focusout(function () {
-		generate();
-		});
-		function generate() {
-		var bourse = $("#etudiant_bourse").val();
-		if (bourse == 'oui') {
-		generateChambre();
-		} else if (bourse == 'non') {
-		generateAdresse();
-		}
-		}
-		function generateChambre() {
-			$('#etudiant_chambre').html('<input type="text" placeholder="Chambre" required>');
-			$('#etudiant_chambre').show();
-		}
-
-		function generateAdresse() {
-			$('#etudiant_chambre').html('<input type="text" placeholder="Adresse" required>');
-			$('#etudiant_chambre').show();
-		}
-})
-	</script>
 {% endblock %}

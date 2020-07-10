@@ -41,9 +41,20 @@ class Chambre
      */
     private $etudiants;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Etudiant::class, inversedBy="chambre")
+     */
+    private $etudiant;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Etudiant::class, mappedBy="chambre")
+     */
+    private $chambre;
+
     public function __construct()
     {
         $this->etudiants = new ArrayCollection();
+        $this->chambre = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -117,8 +128,47 @@ class Chambre
 
         return $this;
     }
-    public function __toString()
+
+    public function getEtudiant(): ?Etudiant
     {
-        return $this->name;
+        return $this->etudiant;
+    }
+
+    public function setEtudiant(?Etudiant $etudiant): self
+    {
+        $this->etudiant = $etudiant;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Etudiant[]
+     */
+    public function getChambre(): Collection
+    {
+        return $this->chambre;
+    }
+
+    public function addChambre(Etudiant $chambre): self
+    {
+        if (!$this->chambre->contains($chambre)) {
+            $this->chambre[] = $chambre;
+            $chambre->setChambre($this);
+        }
+
+        return $this;
+    }
+
+    public function removeChambre(Etudiant $chambre): self
+    {
+        if ($this->chambre->contains($chambre)) {
+            $this->chambre->removeElement($chambre);
+            // set the owning side to null (unless already changed)
+            if ($chambre->getChambre() === $this) {
+                $chambre->setChambre(null);
+            }
+        }
+
+        return $this;
     }
 }

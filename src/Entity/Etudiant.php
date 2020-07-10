@@ -40,7 +40,7 @@ class Etudiant
 
     /**
      * @ORM\Column(type="string", length=100)
-     * @Assert\Regex(pattern="/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/", message="Email invalide") 
+     * @Assert\Regex(pattern="/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/", message="Email invalide")
      */
     private $email;
 
@@ -65,14 +65,26 @@ class Etudiant
      private $addresse;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Chambre::class, inversedBy="etudiants")
+     * @ORM\Column(type="string", length=50,nullable=true)
      */
-    private $chambre;
+    private $loge;
 
     /**
      * @ORM\Column(type="string", length=50)
      */
     private $bourse;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Chambre::class, inversedBy="chambre")
+     */
+    private $chambre;
+
+    /**
+     * @ORM\Column(type="string", length=100,nullable=true)
+     */
+    private $nomchambre;
+
+
 
     public function getId(): ?int
     {
@@ -89,6 +101,10 @@ class Etudiant
         return $this->addresse;
     }
 
+    public function getLoge(): ?string
+    {
+        return $this->loge;
+    }
     public function setMatricule(string $matricule): self
     {
         $this->matricule = $matricule;
@@ -107,13 +123,19 @@ class Etudiant
 
         return $this;
     }
+
     public function setAddresse(string $addresse): self
     {
         $this->addresse = $addresse;
 
         return $this;
     }
+    public function setLoge(string $loge): self
+    {
+        $this->loge = $loge;
 
+        return $this;
+    }
 
     public function getPrenom(): ?string
     {
@@ -176,6 +198,28 @@ class Etudiant
     }
 
 
+    public function getBourse(): ?String
+    {
+        return $this->bourse;
+    }
+    public function getNomchambre(): ?String
+    {
+        return $this->nomchambre;
+    }
+
+
+    public function setBourse(String $bourse): self
+    {
+        $this->bourse = $bourse;
+
+        return $this;
+    }
+    public function setNomchambre(String $nc): self
+    {
+        $this->nomchambre= $nc;
+
+        return $this;
+    }
     public function getChambre(): ?Chambre
     {
         return $this->chambre;
@@ -188,15 +232,11 @@ class Etudiant
         return $this;
     }
 
-    public function getBourse(): ?String
-    {
-        return $this->bourse;
-    }
+   public function __toString()
+   {
+       // TODO: Implement __toString() method.
+       return $this->chambre;
 
-    public function setBourse(String $bourse): self
-    {
-        $this->bourse = $bourse;
+   }
 
-        return $this;
-    }
 }

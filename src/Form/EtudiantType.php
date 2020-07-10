@@ -26,11 +26,17 @@ class EtudiantType extends AbstractType
             ->add('DateDeNaissance')
             ->add('bourse', ChoiceType::class, [
                 'choices'  => [
+                    'Boursier ou non ?' => 'ch',
                     'Oui' => 'oui',
                     'Non' => 'non',
                 ],
+            ])
+            ->add('chambre', EntityType::class, [
+                'class' => Chambre::class,
+                'choice_label' => function ($chambre) {
+                    return $chambre->getNumero();
+                },
             ]);
-            
     }
 
     public function configureOptions(OptionsResolver $resolver)
