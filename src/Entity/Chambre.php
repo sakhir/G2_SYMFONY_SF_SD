@@ -171,5 +171,4 @@ class Chambre
 
         return $this;
     }
-
 }

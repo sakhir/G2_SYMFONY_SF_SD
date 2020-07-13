@@ -8,6 +8,10 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormInterface;
+use Symfony\Component\Form\FormEvents;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\Test\FormInterface as TestFormInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class EtudiantType extends AbstractType
@@ -20,7 +24,6 @@ class EtudiantType extends AbstractType
             ->add('email')
             ->add('tel')
             ->add('DateDeNaissance')
-
             ->add('bourse', ChoiceType::class, [
                 'choices'  => [
                     'Boursier ou non ?' => 'ch',
@@ -28,14 +31,12 @@ class EtudiantType extends AbstractType
                     'Non' => 'non',
                 ],
             ])
-            ->add('chambre',EntityType::class, [
+            ->add('chambre', EntityType::class, [
                 'class' => Chambre::class,
-                'choice_label' => function($chambre){
+                'choice_label' => function ($chambre) {
                     return $chambre->getNumero();
                 },
-            ])
-
-        ;
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)
