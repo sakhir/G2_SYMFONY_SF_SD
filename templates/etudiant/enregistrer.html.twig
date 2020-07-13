@@ -2,10 +2,12 @@
 {% form_theme form 'bootstrap_4_layout.html.twig' %}
 
 {% block res_body %}
+<div class="x_panel">
+    <h2>Enregistrer un etudiant  </h2>
+    <div class="x_title">
 
-<h2>Enregistrer un etudiant  </h2>
-
-        {{ form_start(form) }}
+   <div class="form-horizontal form-label-left input_mask">
+       {{ form_start(form) }}
         {{ form_row(form.nom, {'attr': {'placeholder': 'Nom'}}) }}
         {{ form_row(form.prenom, {'attr':{'placeholder': 'Prenom'}}) }}
         {{ form_row(form.email, {'attr': {'placeholder': 'Email'}}) }}
@@ -19,4 +21,8 @@
                 Enregistrer
             </button>
             {{ form_end(form) }}
-{% endblock %}
+   </div>
+
+    </div>
+</div>
+        {% endblock %}

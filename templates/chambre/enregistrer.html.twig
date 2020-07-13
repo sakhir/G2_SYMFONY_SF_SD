@@ -2,8 +2,9 @@
 {% form_theme form 'bootstrap_4_layout.html.twig' %}
 
 {% block res_body %}
-<h2>Enregistrer une chambre </h2>
-
+<div class="x_panel">
+    <h2>Enregistrer un chambre  </h2>
+    <div class="x_title">
 
         {{ form_start(form) }}
         {{ form_row(form.numero, {'attr': {'placeholder': 'Le numero sera generee automatiquement '}}) }}
@@ -14,5 +15,7 @@
             </button>
 
         {{ form_end(form) }}
+    </div>
+</div>
 {% endblock %}
 
